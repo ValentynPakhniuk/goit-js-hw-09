@@ -18,7 +18,6 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  inline: true,
   onClose(selectedDates) {
     const data = selectedDates[0];
     const timeMil = data.getTime() - Date.now();
@@ -30,9 +29,7 @@ const options = {
   },
 };
 
-const {onClose, enableTime, time_24hr, defaultDate, minuteIncrement} = options;
-
-const calendar = flatpickr(inputData, { onClose, enableTime, time_24hr, defaultDate, minuteIncrement });
+flatpickr(inputData, options);
 
 function onStartTimer() {
   timerEnd = new Date(inputData.value) - Date.now();
@@ -44,7 +41,7 @@ function onStartTimer() {
     timeHours.textContent = `${hours}`;
     timeMinutes.textContent = `${minutes}`;
     timeSeconds.textContent = `${seconds}`;
-    if (timerEnd < 1000 ) {
+    if (timerEnd < 1000) {
       clearInterval(timerId);
       return;
     } 
